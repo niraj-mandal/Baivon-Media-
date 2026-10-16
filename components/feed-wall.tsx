@@ -36,7 +36,7 @@ function Tile({ clip, hot }: { clip: Clip; hot: boolean }) {
       className={`relative aspect-[9/16] w-36 shrink-0 overflow-hidden rounded-2xl border ${hot ? "border-accent/50" : "border-white/10"}`}
       style={{
         background: hot
-          ? "radial-gradient(80% 55% at 50% 30%, rgb(30 217 123 / 0.35), transparent 70%), linear-gradient(160deg, #1b1b1b, #070707)"
+          ? "linear-gradient(160deg, #1b1b1b, #070707)"
           : "linear-gradient(160deg, #1d1d1d, #080808)",
       }}
     >
@@ -44,7 +44,7 @@ function Tile({ clip, hot }: { clip: Clip; hot: boolean }) {
       <div className="absolute inset-x-2.5 bottom-2.5 space-y-1.5">
         <div className="h-1.5 w-4/5 rounded-full bg-white/20" />
         <div className="h-1.5 w-1/2 rounded-full bg-white/10" />
-        <p className={`pt-1 font-mono text-[10px] ${hot ? "text-accent" : "text-white/45"}`}>▶ {clip.views}</p>
+        <p className={`pt-1 font-mono text-[10px] ${hot ? "text-accent" : "text-white/55"}`}>▶ {clip.views}</p>
       </div>
     </div>
   );

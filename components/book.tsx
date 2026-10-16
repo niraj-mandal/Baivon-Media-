@@ -19,8 +19,8 @@ export function Book() {
       <Reveal className="relative mx-auto max-w-3xl text-center">
         <BrandOrb />
         <h2 className="mt-8 text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl">
-          Ready to be everywhere?
-          <span className="block text-muted">Let&apos;s talk.</span>
+          Have a launch coming up?
+          <span className="block text-muted">We&apos;ll plan how it gets seen.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-md text-base text-muted text-balance sm:text-lg">
           Book a 30-minute intro call. We&apos;ll come back with a plan for your launch.

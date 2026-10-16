@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { Arrow, Pill } from "@/components/ui";
+import { Arrow } from "@/components/ui";
 import { calUrl, logos, nextSteps, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,11 +21,7 @@ export default function Contact() {
       <main className="tone-light min-h-dvh">
         <div className="mx-auto grid max-w-6xl gap-14 px-4 pt-36 pb-24 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:pt-44">
           <div>
-            <Pill>Contact</Pill>
-            <h1 className="mt-6 text-5xl font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl">
-              Get in touch.
-              <span className="block text-muted">Let&apos;s plan your reach.</span>
-            </h1>
+            <h1 className="text-5xl font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl">Tell us what you&apos;re launching.</h1>
             <p className="mt-6 max-w-md text-lg text-muted text-pretty">
               We&apos;re the content and distribution team for tech brands: content marketing, tech campaigns, UGC and clipping.
             </p>
@@ -56,7 +52,7 @@ export default function Contact() {
               <ul className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-5" aria-label="Clients">
                 {logos.map((l) =>
                   l.logo ? (
-                    <li key={l.name} className="flex items-center gap-1.5 opacity-55 grayscale">
+                    <li key={l.name} className="flex items-center gap-1.5 opacity-70 grayscale">
                       <Image src={l.logo} alt={l.withName ? "" : l.name} width={120} height={28} className="h-5 w-auto" />
                       {l.withName && <span className="text-sm font-semibold">{l.name}</span>}
                     </li>

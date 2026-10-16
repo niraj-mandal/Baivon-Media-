@@ -2,7 +2,7 @@ import { FeedWall } from "./feed-wall";
 import { LogoMarquee } from "./logos";
 import { bookHref, stats } from "@/lib/site";
 import { RotatingWord } from "./rotating-word";
-import { Button, Pill } from "./ui";
+import { Button } from "./ui";
 
 export function Hero() {
   return (
@@ -13,8 +13,7 @@ export function Hero() {
         {/* lg: headline + buttons left, paragraph right. Mobile: one stacked column. */}
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:grid-rows-[auto_auto] lg:gap-x-16 lg:gap-y-9">
           <div className="rise lg:col-start-1 lg:row-start-1 lg:self-end">
-            <Pill>Content · Campaigns · UGC · Clipping</Pill>
-            <h1 className="mt-6 text-5xl font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl">
+            <h1 className="text-5xl font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl">
               Make your <RotatingWord words={["launch", "podcast", "product demo", "founder story"]} />{" "}
               <span className="block text-balance text-muted">impossible to scroll past.</span>
             </h1>
@@ -36,7 +35,7 @@ export function Hero() {
             </div>
             {/* Proof at the decision point; uses the same headline stat as the Distribution section */}
             <p className="mt-6 flex items-center gap-2 text-sm text-muted">
-              <span className="live-dot size-1.5 rounded-full bg-accent" aria-hidden />
+              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
               <span>
                 <span className="font-mono text-fg">
                   {stats[0].value}

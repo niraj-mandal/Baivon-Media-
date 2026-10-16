@@ -7,10 +7,9 @@ export function Services() {
   return (
     <Section id="services" tone="light">
       <SectionHeading
-        pill="Services"
-        title="Four ways we grow"
-        sub="your brand's reach."
-        body="Pick one or run them together. Every service is built for technical products and measured in real views."
+        align="split"
+        title="What we do"
+        body="Four services, run on their own or together. Each one is built for technical products and reported in real views."
       />
       <div className="svc-stack mt-16 space-y-8">
         {services.map((s, i) => (
@@ -18,7 +17,7 @@ export function Services() {
             key={s.title}
             // offset each panel a little lower so the earlier ones peek out above it
             style={{ top: `calc(6rem + ${i * 1.75}rem)` }}
-            className="svc-card tone-dark sticky grid min-h-[26rem] gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(90%_80%_at_100%_0%,rgb(30_217_123/0.10),transparent_60%),#0c0c0c] p-7 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.5)] sm:min-h-[30rem] sm:p-12 md:grid-cols-[1.05fr_0.95fr]"
+            className="svc-card tone-dark sticky grid min-h-[26rem] gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0c0c0c] p-7 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.5)] sm:min-h-[30rem] sm:p-12 md:grid-cols-[1.05fr_0.95fr]"
           >
             <div className="flex flex-col justify-between">
               <div className="flex items-start justify-between gap-6">

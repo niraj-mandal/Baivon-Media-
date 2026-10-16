@@ -10,7 +10,10 @@ export function Pill({ children }: { children: ReactNode }) {
   );
 }
 
-/** Two-tone heading: first line white, second line grey. */
+/**
+ * Section heading. Kept deliberately varied across the page: the pill and the grey second line are
+ * optional (use sparingly), and `split` puts the title left and the body right on wide screens.
+ */
 export function SectionHeading({
   pill,
   title,
@@ -18,21 +21,33 @@ export function SectionHeading({
   body,
   align = "center",
 }: {
-  pill: string;
+  pill?: string;
   title: string;
-  sub: string;
+  sub?: string;
   body?: string;
-  align?: "center" | "left";
+  align?: "center" | "left" | "split";
 }) {
-  const center = align === "center";
+  const heading = (
+    <h2 className={`${pill ? "mt-5" : ""} text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl`}>
+      {title}
+      {sub && <span className="block text-muted">{sub}</span>}
+    </h2>
+  );
+  if (align === "split") {
+    return (
+      <Reveal className="grid gap-6 md:grid-cols-2 md:items-end">
+        <div>
+          {pill && <Pill>{pill}</Pill>}
+          {heading}
+        </div>
+        {body && <p className="max-w-md text-base text-muted text-pretty md:justify-self-end">{body}</p>}
+      </Reveal>
+    );
+  }
   return (
-    <Reveal className={center ? "mx-auto max-w-2xl text-center" : "max-w-xl"}>
-      <Pill>{pill}</Pill>
-      <h2 className="mt-5 text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl">
-        {title}
-        <br />
-        <span className="text-muted">{sub}</span>
-      </h2>
+    <Reveal className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-xl"}>
+      {pill && <Pill>{pill}</Pill>}
+      {heading}
       {body && <p className="mt-5 text-base text-muted text-pretty">{body}</p>}
     </Reveal>
   );
@@ -51,7 +66,7 @@ export function Button({
 }) {
   const styles =
     variant === "primary"
-      ? "bg-fg text-bg hover:bg-accent"
+      ? "bg-fg text-bg hover:bg-accent hover:text-black"
       : "border border-line bg-surface text-fg hover:border-fg/25";
   return (
     <a

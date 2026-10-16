@@ -12,20 +12,11 @@ const n = clips.length;
 export function Clips() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
   const videos = useRef<(HTMLVideoElement | null)[]>([]);
   const dialog = useRef<HTMLDialogElement>(null);
   const touchX = useRef(0);
   const go = (d: number) => setActive((a) => (a + d + n) % n);
-
-  // Auto-advance only through placeholder tiles; a real clip stays put so it isn't cut off mid-play.
-  const autoAdvance = !reduce && !paused && open === null && !clips[active].video;
-  useEffect(() => {
-    if (!autoAdvance) return;
-    const id = setTimeout(() => setActive((a) => (a + 1) % n), 3500);
-    return () => clearTimeout(id);
-  }, [autoAdvance, active]);
 
   // Play the center clip, pause the rest so the page stays light.
   useEffect(() => {
@@ -44,17 +35,13 @@ export function Clips() {
 
   return (
     <Section id="clips" className="overflow-x-clip">
-      <SectionHeading pill="The feed" title="Content that stops" sub="the scroll, at scale." />
+      <SectionHeading align="split" title="Recent clips" body="Clips and UGC we've made for clients. Tap the one in the middle to watch it with sound." />
       {clips.some((c) => c.sample) && (
         <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-wider text-muted">Sample clips</p>
       )}
 
       <div
         className="relative mt-16 h-[460px] [perspective:1400px]"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
         onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
         onTouchEnd={(e) => {
           const dx = e.changedTouches[0].clientX - touchX.current;
@@ -103,12 +90,12 @@ export function Clips() {
                 <div
                   className="size-full"
                   style={{
-                    background: `radial-gradient(90% 60% at ${30 + i * 9}% 20%, rgb(30 217 123 / ${0.08 + (i % 3) * 0.05}), transparent 70%), linear-gradient(160deg, #262626, #0a0a0a)`,
+                    background: `linear-gradient(${150 + i * 6}deg, #262626, #0a0a0a)`,
                   }}
                 />
               )}
               <span className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/80 p-4">
-                <span className="self-start rounded-full bg-black/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider backdrop-blur">
+                <span className="self-start rounded-full bg-black/50 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider backdrop-blur">
                   {c.platform}
                 </span>
                 {(!c.video || (isActive && c.video)) && (

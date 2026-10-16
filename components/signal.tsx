@@ -1,6 +1,6 @@
 import { stats } from "@/lib/site";
 import { EngineLive } from "./engine-live";
-import { Counter, Reveal } from "./motion";
+import { Reveal } from "./motion";
 import { Section, SectionHeading } from "./ui";
 
 const fan = [-14, -7, 0, 7, 14]; // tile rotations in the clip fan
@@ -9,8 +9,7 @@ const fan = [-14, -7, 0, 7, 14]; // tile rotations in the clip fan
 export function Signal() {
   return (
     <Section id="reach">
-      <div className="pointer-events-none absolute inset-x-0 top-1/3 mx-auto h-72 max-w-3xl rounded-full bg-accent/10 blur-[120px]" aria-hidden />
-      <SectionHeading pill="Distribution" title="One piece of content." sub="Every feed that matters." />
+      <SectionHeading pill="Distribution" title="One video. 240 clips." sub="Five platforms." />
 
       <Reveal className="relative mt-16 grid items-center justify-items-center gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1.25fr] lg:gap-6">
         {/* 1. Source */}
@@ -34,13 +33,13 @@ export function Signal() {
             {fan.map((deg, i) => (
               <span
                 key={deg}
-                className={`absolute bottom-0 left-1/2 aspect-[9/16] w-20 -ml-10 origin-bottom rounded-xl border ${deg === 0 ? "border-accent/50 bg-[radial-gradient(80%_55%_at_50%_30%,rgb(30_217_123/0.35),transparent_70%),linear-gradient(160deg,#1b1b1b,#070707)]" : "border-white/10 bg-[linear-gradient(160deg,#1d1d1d,#080808)]"}`}
+                className={`absolute bottom-0 left-1/2 aspect-[9/16] w-20 -ml-10 origin-bottom rounded-xl border ${deg === 0 ? "border-accent/50 bg-[linear-gradient(160deg,#1b1b1b,#070707)]" : "border-white/10 bg-[linear-gradient(160deg,#1d1d1d,#080808)]"}`}
                 style={{ transform: `rotate(${deg}deg) translateX(${deg * 2.4}px)`, zIndex: 5 - Math.abs(i - 2) }}
               />
             ))}
           </div>
           <p className="mt-4 font-mono text-2xl tracking-tight">
-            <Counter to={240} prefix="× " />
+            × 240
           </p>
           <p className="text-sm text-muted">short clips cut and posted</p>
         </div>
@@ -57,7 +56,9 @@ export function Signal() {
         {stats.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.06} className={`px-4 sm:px-6 ${i > 0 ? "md:border-l md:border-line" : ""}`}>
             <p className="font-mono text-4xl tracking-tight tabular-nums sm:text-5xl">
-              <Counter to={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+              {s.prefix}
+              {s.value.toLocaleString("en-US", { minimumFractionDigits: s.decimals ?? 0, maximumFractionDigits: s.decimals ?? 0 })}
+              {s.suffix}
             </p>
             <p className="mt-2 text-sm text-muted">{s.label}</p>
           </Reveal>

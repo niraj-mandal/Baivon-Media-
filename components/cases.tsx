@@ -41,7 +41,7 @@ export function Cases() {
 
   return (
     <Section id="work" tone="light">
-      <SectionHeading pill="Case studies" title="Results, not reach" sub="promises." body="A few of the campaigns we've run for tech brands." />
+      <SectionHeading align="split" title="Recent campaigns" body="What we set out to do for each brand and the numbers it moved." />
 
       <div
         ref={region}
@@ -84,7 +84,7 @@ export function Cases() {
                   <span className="text-lg font-semibold tracking-tight">{c.brand}</span>
                 )}
                 {c.sample && (
-                  <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted">
+                  <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-muted">
                     Sample
                   </span>
                 )}
@@ -112,7 +112,7 @@ export function Cases() {
                 {c.video ? (
                   <video src={c.video} className="size-full object-cover" autoPlay muted loop playsInline />
                 ) : (
-                  <div className="grid size-full place-items-center bg-[radial-gradient(80%_55%_at_50%_30%,rgb(30_217_123/0.25),transparent_70%),linear-gradient(160deg,#1c1c1c,#070707)]">
+                  <div className="grid size-full place-items-center bg-[linear-gradient(160deg,#1c1c1c,#070707)]">
                     <span className="grid size-14 place-items-center rounded-full border border-white/20 bg-white/10 text-white" aria-hidden>
                       <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M5 3.5v9l7.5-4.5z" />
@@ -120,7 +120,7 @@ export function Cases() {
                     </span>
                   </div>
                 )}
-                <span className="absolute top-4 left-4 rounded-full bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-white/80">
+                <span className="absolute top-4 left-4 rounded-full bg-black/60 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-white/80">
                   {c.platform}
                 </span>
                 <span className="absolute inset-x-4 bottom-4 text-sm font-medium text-white">{c.brand}</span>

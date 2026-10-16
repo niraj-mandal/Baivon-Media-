@@ -12,7 +12,7 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="tone-dark relative scroll-mt-16 overflow-x-clip py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeading pill="Wall of love" title="Trusted by founders," sub="loved by growth teams." />
+        <SectionHeading pill="Clients" title="In their words" />
         {testimonials.some((t) => t.sample) && (
           <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-wider text-muted">Sample posts</p>
         )}

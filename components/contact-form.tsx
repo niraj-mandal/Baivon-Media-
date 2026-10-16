@@ -9,7 +9,7 @@ const KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
-  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm placeholder:text-fg/35 outline-none transition-colors focus:border-accent/60";
+  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm placeholder:text-fg/60 outline-none transition-colors focus:border-accent/60";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -54,7 +54,7 @@ export function ContactForm() {
           ))}
         </ol>
         {site.calLink ? (
-          <a href={calUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-11 items-center rounded-full bg-fg px-5 text-sm font-medium text-bg hover:bg-accent">
+          <a href={calUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-11 items-center rounded-full bg-fg px-5 text-sm font-medium text-bg hover:bg-accent hover:text-black">
             Skip the wait: book a call now
           </a>
         ) : (
@@ -119,7 +119,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="h-12 w-full rounded-full bg-fg text-sm font-medium text-bg transition-colors hover:bg-accent disabled:opacity-60"
+        className="h-12 w-full rounded-full bg-fg text-sm font-medium text-bg transition-colors hover:bg-accent hover:text-black disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send enquiry"}
       </button>

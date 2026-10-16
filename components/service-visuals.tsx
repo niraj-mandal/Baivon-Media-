@@ -1,5 +1,3 @@
-import { Counter } from "./motion";
-
 export type ServiceVisualKind = "post" | "launch" | "ugc" | "clips";
 
 /** Small illustration of what each service produces, shown on the right of its panel. */
@@ -31,16 +29,16 @@ function PostVisual() {
       <p className="mt-4 text-sm leading-relaxed text-white/80">
         We just shipped the feature our users asked for most. Here&apos;s the 30-second demo 👇
       </p>
-      <div className="mt-4 aspect-video rounded-xl bg-[radial-gradient(70%_70%_at_50%_40%,rgb(30_217_123/0.18),transparent_70%),linear-gradient(160deg,#1c1c1c,#080808)]" />
+      <div className="mt-4 aspect-video rounded-xl bg-[linear-gradient(160deg,#1c1c1c,#070707)]" />
       <div className="mt-4 flex gap-6 font-mono text-xs text-muted">
         <span>
-          ♥ <Counter to={12400} />
+          ♥ 12,400
         </span>
         <span>
-          ↻ <Counter to={1930} />
+          ↻ 1,930
         </span>
         <span className="text-accent">
-          <Counter to={482} suffix="K" /> views
+          482K views
         </span>
       </div>
     </div>
@@ -52,10 +50,7 @@ function LaunchVisual() {
     <div className={`${frame} w-full max-w-sm p-5`}>
       <div className="flex items-center justify-between font-mono text-xs text-muted">
         <span>Views per hour</span>
-        <span className="flex items-center gap-1.5 text-accent">
-          <span className="live-dot size-1.5 rounded-full bg-accent" aria-hidden />
-          Live
-        </span>
+        <span className="text-white/70">Launch week</span>
       </div>
       <svg viewBox="0 0 300 140" className="mt-4 w-full" aria-hidden>
         <defs>
@@ -81,7 +76,7 @@ function LaunchVisual() {
 function UgcVisual() {
   return (
     <div className="relative">
-      <div className="relative aspect-[9/16] w-40 overflow-hidden rounded-[1.75rem] border-[5px] border-[#1a1a1a] bg-[radial-gradient(80%_55%_at_50%_30%,rgb(30_217_123/0.25),transparent_70%),linear-gradient(160deg,#1c1c1c,#070707)] sm:w-44">
+      <div className="relative aspect-[9/16] w-40 overflow-hidden rounded-[1.75rem] border-[5px] border-[#1a1a1a] bg-[linear-gradient(160deg,#1c1c1c,#070707)] sm:w-44">
         <span className="absolute top-3 left-3 rounded-full bg-black/60 px-2 py-0.5 font-mono text-[9px] uppercase text-white/70">Creator</span>
         <span className="absolute inset-0 m-auto grid size-11 place-items-center rounded-full border border-white/20 bg-white/10" aria-hidden>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
@@ -119,12 +114,12 @@ function ClipsVisual() {
         {[0, 1, 2, 3, 4].map((i) => (
           <span
             key={i}
-            className={`aspect-[9/16] rounded-lg border ${i === 2 ? "border-accent/50 bg-[radial-gradient(80%_55%_at_50%_30%,rgb(30_217_123/0.3),transparent_70%),#0d0d0d]" : "border-white/10 bg-[linear-gradient(160deg,#1d1d1d,#080808)]"}`}
+            className={`aspect-[9/16] rounded-lg border ${i === 2 ? "border-accent/50 bg-[#0d0d0d]" : "border-white/10 bg-[linear-gradient(160deg,#1d1d1d,#080808)]"}`}
           />
         ))}
       </div>
       <p className="mt-4 text-center font-mono text-sm">
-        <Counter to={240} prefix="× " suffix=" clips" />
+        × 240 clips
       </p>
     </div>
   );

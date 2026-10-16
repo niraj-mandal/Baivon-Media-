@@ -129,14 +129,6 @@ body {
   to { transform: translateX(250%); }
 }
 
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgb(30 217 123 / 0.6); }
-  50% { box-shadow: 0 0 0 6px rgb(30 217 123 / 0); }
-}
-.live-dot {
-  animation: pulse-dot 1.8s ease-in-out infinite;
-}
-
 @keyframes orb-ring {
   from { transform: scale(1); opacity: 0.6; }
   to { transform: scale(1.7); opacity: 0; }
@@ -219,7 +211,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .feed-col, .marquee, .flow::after, .live-dot, .orb-ring, .rise, .process-fill, .word-in, .svc-card, .case-progress { animation: none; }
+  .feed-col, .marquee, .flow::after, .orb-ring, .rise, .process-fill, .word-in, .svc-card, .case-progress { animation: none; }
   .flow::after { opacity: 0; }
   .faq-item::details-content { transition: none; }
 }

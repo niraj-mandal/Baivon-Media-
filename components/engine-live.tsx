@@ -1,8 +1,3 @@
-"use client";
-
-import { useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
-import { formatNumber } from "./motion";
 import { PlatformIcon, type Platform } from "./platform-icon";
 
 // Example campaign split by platform. PLACEHOLDER: use a real campaign's numbers.
@@ -14,25 +9,14 @@ const base: { p: Platform; name: string; views: number }[] = [
   { p: "linkedin", name: "LinkedIn", views: 820_000 },
 ];
 const max = base[0].views;
+const total = base.reduce((a, b) => a + b.views, 0);
 
-/** Platform nodes with view counters that tick up, plus the running total. */
+/** Platform nodes with each one's share of views, plus the campaign total. */
 export function EngineLive() {
-  const reduce = useReducedMotion();
-  const [views, setViews] = useState(base.map((b) => b.views));
-
-  useEffect(() => {
-    if (reduce) return;
-    // each platform grows in proportion to its size, so the ranking stays stable
-    const id = setInterval(() => setViews((v) => v.map((x, i) => x + Math.round((base[i].views / max) * (300 + Math.random() * 900)))), 900);
-    return () => clearInterval(id);
-  }, [reduce]);
-
-  const total = views.reduce((a, b) => a + b, 0);
-
   return (
     <div className="w-full">
       <ul className="space-y-2">
-        {base.map((b, i) => (
+        {base.map((b) => (
           <li key={b.p} className="card flex items-center gap-3 rounded-2xl px-4 py-3">
             <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[0.06]">
               <PlatformIcon p={b.p} />
@@ -43,17 +27,14 @@ export function EngineLive() {
                 <span className="block h-full rounded-full bg-accent/80" style={{ width: `${(b.views / max) * 100}%` }} />
               </span>
             </span>
-            <span className="font-mono text-sm tabular-nums">{formatNumber(views[i])}</span>
+            <span className="font-mono text-sm tabular-nums">{b.views.toLocaleString("en-US")}</span>
           </li>
         ))}
       </ul>
       <p className="mt-4 flex items-center justify-between gap-3 px-1 text-sm text-muted">
-        <span className="flex items-center gap-2">
-          <span className="live-dot size-1.5 rounded-full bg-accent" aria-hidden />
-          Example campaign, live
-        </span>
+        <span>Example campaign</span>
         <span>
-          <span className="font-mono text-fg tabular-nums">{formatNumber(total)}</span> views
+          <span className="font-mono text-fg tabular-nums">{total.toLocaleString("en-US")}</span> views
         </span>
       </p>
     </div>

@@ -16,10 +16,8 @@ export function Faq() {
       <div className="lg:sticky lg:top-28 lg:self-start">
         <SectionHeading
           align="left"
-          pill="FAQ"
-          title="Questions?"
-          sub="We've got answers."
-          body="Still unsure about something? Book a call and ask us directly."
+          title="Common questions"
+          body="Pricing, timelines and how we measure views. Anything else, ask us on a call."
         />
         <Button href={bookHref} className="mt-8">
           Book a call

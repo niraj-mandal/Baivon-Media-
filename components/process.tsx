@@ -9,9 +9,7 @@ export function Process() {
       <div className="lg:sticky lg:top-28 lg:self-start">
         <SectionHeading
           align="left"
-          pill="How it works"
-          title="From brief to millions"
-          sub="of views in three steps."
+          title="How it works"
           body="From first call to a live campaign in about a week."
         />
         <a href={bookHref} className="group mt-8 inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
@@ -28,7 +26,7 @@ export function Process() {
           <li key={s.title} className="relative grid grid-cols-[1.375rem_1fr] gap-6 pb-14 last:pb-0 sm:gap-10">
             <span className="relative z-10 mt-2 size-[1.375rem] rounded-full border-2 border-accent bg-bg" aria-hidden />
             <Reveal delay={i * 0.08}>
-              <span className="block font-mono text-5xl tracking-tight text-fg/15 sm:text-6xl">0{i + 1}</span>
+              <span className="block font-mono text-5xl tracking-tight text-fg/15 sm:text-6xl" aria-hidden>0{i + 1}</span>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <h3 className="text-2xl font-medium tracking-tight sm:text-3xl">{s.title}</h3>
                 <span className="rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted">{s.when}</span>
