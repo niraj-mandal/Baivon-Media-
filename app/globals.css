@@ -1,26 +1,222 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Colors are CSS vars so a section can flip tone with .tone-light / .tone-dark */
+:root,
+.tone-dark {
+  --bg: #050505;
+  --fg: #f5f5f5;
+  --muted: #8a8a8a;
+  --line: rgb(255 255 255 / 0.09);
+  --surface: rgb(255 255 255 / 0.03);
+}
+
+.tone-light {
+  --bg: #f4f4f1;
+  --fg: #0b0b0b;
+  --muted: #63635f;
+  --line: rgb(0 0 0 / 0.1);
+  --surface: rgb(0 0 0 / 0.03);
+}
+
+.tone-light,
+.tone-dark {
+  background: var(--bg);
+  color: var(--fg);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-accent: #1ed97b;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #000;
+}
+
+/* Glassy dark card with a soft top highlight */
+.card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgb(255 255 255 / 0.06), transparent 60%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+/* Light sections: solid white card with a soft drop shadow */
+.tone-light .card {
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px -16px rgb(0 0 0 / 0.18);
+}
+
+/* The Feed: tilted wall of vertical tiles drifting upward */
+.feed-wall {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  gap: 1rem;
+  transform: translate(-50%, -50%) perspective(1400px) rotateX(32deg) rotateZ(-14deg);
+}
+.feed-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: feed-up 45s linear infinite;
+}
+@keyframes feed-up {
+  to { transform: translateY(-50%); }
+}
+
+/* Client logo strip in the hero */
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Distribution engine connectors: a green pulse flowing between stages.
+   Vertical when the engine stacks on small screens, horizontal from lg up. */
+.flow {
+  position: relative;
+  overflow: hidden;
+  width: 1px;
+  height: 3rem;
+  background: var(--line);
+}
+.flow::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: linear-gradient(transparent, var(--color-accent), transparent);
+  animation: flow-y 1.6s linear infinite;
+}
+@media (min-width: 64rem) {
+  .flow { width: 4rem; height: 1px; }
+  .flow::after {
+    inset: 0 auto 0 0;
+    width: 40%;
+    height: auto;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    animation-name: flow-x;
+  }
+}
+@keyframes flow-y {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(250%); }
+}
+@keyframes flow-x {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(30 217 123 / 0.6); }
+  50% { box-shadow: 0 0 0 6px rgb(30 217 123 / 0); }
+}
+.live-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes orb-ring {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(1.7); opacity: 0; }
+}
+.orb-ring {
+  animation: orb-ring 2.6s ease-out infinite;
+}
+
+/* How it works: the timeline line fills green as it scrolls through view.
+   Browsers without scroll-driven animations just show it filled. */
+.process-fill {
+  transform-origin: top;
+}
+@supports (animation-timeline: view()) {
+  .process-fill {
+    animation: process-fill linear both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 65%;
+  }
+}
+@keyframes process-fill {
+  from { transform: scaleY(0); }
+}
+
+/* FAQ answers slide open instead of jumping. Browsers without ::details-content just open instantly. */
+:root {
+  interpolate-size: allow-keywords;
+}
+.faq-item::details-content {
+  height: 0;
+  overflow: clip;
+  transition: height 0.35s ease, content-visibility 0.35s allow-discrete;
+}
+.faq-item[open]::details-content {
+  height: auto;
+}
+
+/* Services stack: as the next panel slides up, the one beneath shrinks and dims like a card pushed
+   back into the deck. Each panel is driven by the NEXT panel's entry (named view timelines, shared
+   via timeline-scope). Written for 4 panels; a 5th would stack fine, just without this effect. */
+@supports (animation-timeline: view()) {
+  .svc-stack { timeline-scope: --svc-2, --svc-3, --svc-4; }
+  .svc-card:nth-child(2) { view-timeline-name: --svc-2; }
+  .svc-card:nth-child(3) { view-timeline-name: --svc-3; }
+  .svc-card:nth-child(4) { view-timeline-name: --svc-4; }
+  .svc-card { transform-origin: 50% 0; animation: svc-back linear both; animation-range: entry 0% entry 100%; }
+  .svc-card:nth-child(1) { animation-timeline: --svc-2; }
+  .svc-card:nth-child(2) { animation-timeline: --svc-3; }
+  .svc-card:nth-child(3) { animation-timeline: --svc-4; }
+  .svc-card:nth-child(4) { animation: none; }
+}
+@keyframes svc-back {
+  to { transform: scale(0.94); filter: brightness(0.55); }
+}
+
+/* Hero rotating word: each new word eases in */
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(0.3em); filter: blur(4px); }
+}
+.word-in {
+  animation: word-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* CSS-only entrance for above-the-fold content: visible without waiting for JS */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+}
+.rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .feed-col, .marquee, .flow::after, .live-dot, .orb-ring, .rise, .process-fill, .word-in, .svc-card { animation: none; }
+  .flow::after { opacity: 0; }
+  .faq-item::details-content { transition: none; }
+}
+
+/* Back-to-back sections of the same tone share one gap instead of two */
+.tone-light + .tone-light > div,
+.tone-dark + .tone-dark > div {
+  padding-top: 0;
 }

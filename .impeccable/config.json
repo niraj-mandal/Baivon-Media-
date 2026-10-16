@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "components/wordmark.tsx"
+        ],
+        "createdAt": "2026-10-16T19:09:47.870Z",
+        "reason": "user confirmed: approved the green spotlight footer wordmark (decorative, aria-hidden) in chat"
+      }
+    ]
+  }
+}
