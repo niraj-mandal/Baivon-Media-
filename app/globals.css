@@ -192,6 +192,15 @@ body {
   to { transform: scale(0.94); filter: brightness(0.55); }
 }
 
+/* Case study tabs: the active tab's bar fills over 7s; its animationend advances the carousel */
+@keyframes case-progress {
+  from { transform: scaleX(0); }
+}
+.case-progress {
+  transform-origin: left;
+  animation: case-progress 7s linear forwards;
+}
+
 /* Hero rotating word: each new word eases in */
 @keyframes word-in {
   from { opacity: 0; transform: translateY(0.3em); filter: blur(4px); }
@@ -210,7 +219,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .feed-col, .marquee, .flow::after, .live-dot, .orb-ring, .rise, .process-fill, .word-in, .svc-card { animation: none; }
+  .feed-col, .marquee, .flow::after, .live-dot, .orb-ring, .rise, .process-fill, .word-in, .svc-card, .case-progress { animation: none; }
   .flow::after { opacity: 0; }
   .faq-item::details-content { transition: none; }
 }

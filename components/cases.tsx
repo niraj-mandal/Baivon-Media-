@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cases } from "@/lib/site";
 import { Arrow, Section, SectionHeading } from "./ui";
 
@@ -13,20 +13,54 @@ export function Cases() {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
   const touchX = useRef(0);
-  const go = (d: number) => setI((v) => (v + d + n) % n);
+  const region = useRef<HTMLDivElement>(null);
+  const [hover, setHover] = useState(false);
+  const [inView, setInView] = useState(false);
+  // Any manual choice stops auto-advance for good; the visitor is now driving.
+  const [stopped, setStopped] = useState(false);
+  const go = (d: number, manual = true) => {
+    if (manual) setStopped(true);
+    setI((v) => (v + d + n) % n);
+  };
+  const pick = (k: number) => {
+    setStopped(true);
+    setI(k);
+  };
   const c = cases[i];
+
+  useEffect(() => {
+    // "in view" = overlapping the middle band of the screen, so tall cards on short screens still count
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: "-35% 0px -35% 0px" });
+    if (region.current) io.observe(region.current);
+    return () => io.disconnect();
+  }, []);
+
+  // Auto-advance is driven by the active tab's progress bar: when its animation ends, move on.
+  const autoplay = !reduce && !stopped && n > 1;
+  const playing = autoplay && inView && !hover;
 
   return (
     <Section id="work" tone="light">
       <SectionHeading pill="Case studies" title="Results, not reach" sub="promises." body="A few of the campaigns we've run for tech brands." />
 
       <div
+        ref={region}
         className="card mt-16 overflow-hidden p-6 sm:p-10"
         role="region"
         aria-roledescription="carousel"
         aria-label="Case studies"
-        onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") go(1);
+          if (e.key === "ArrowLeft") go(-1);
+        }}
+        onTouchStart={(e) => {
+          touchX.current = e.touches[0].clientX;
+          setHover(true);
+        }}
         onTouchEnd={(e) => {
+          setHover(false);
           const dx = e.changedTouches[0].clientX - touchX.current;
           if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
         }}
@@ -96,16 +130,27 @@ export function Cases() {
         </AnimatePresence>
 
         <div className="mt-10 flex items-center justify-between border-t border-line pt-6">
-          <div className="flex gap-2" role="tablist" aria-label="Choose case study">
+          <div className="flex flex-wrap gap-x-6 gap-y-3" role="tablist" aria-label="Choose case study">
             {cases.map((x, k) => (
               <button
                 key={x.brand}
                 role="tab"
                 aria-selected={k === i}
-                aria-label={x.brand}
-                onClick={() => setI(k)}
-                className={`h-1.5 rounded-full transition-all ${k === i ? "w-8 bg-fg" : "w-3 bg-fg/20 hover:bg-fg/40"}`}
-              />
+                onClick={() => pick(k)}
+                className={`group text-left text-sm font-medium transition-colors ${k === i ? "text-fg" : "text-muted hover:text-fg"}`}
+              >
+                {x.brand}
+                <span className="mt-2 block h-0.5 w-16 overflow-hidden rounded-full bg-fg/10">
+                  {k === i && (
+                    <span
+                      key={i}
+                      className={`block h-full bg-fg ${autoplay ? "case-progress" : ""}`}
+                      style={{ animationPlayState: playing ? "running" : "paused" }}
+                      onAnimationEnd={() => go(1, false)}
+                    />
+                  )}
+                </span>
+              </button>
             ))}
           </div>
           <div className="flex items-center gap-3">
