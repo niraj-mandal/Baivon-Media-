@@ -23,7 +23,7 @@ export function Book() {
           <span className="block text-muted">We&apos;ll plan how it gets seen.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-md text-base text-muted text-balance sm:text-lg">
-          Book a 30-minute intro call. We&apos;ll come back with a plan for your launch.
+          Book a 30-minute intro call or send us a message. We reply within one business day.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button href={bookHref}>Book a call</Button>

@@ -27,7 +27,7 @@ function PostVisual() {
         </span>
       </div>
       <p className="mt-4 text-sm leading-relaxed text-white/80">
-        We just shipped the feature our users asked for most. Here&apos;s the 30-second demo 👇
+        We just shipped the feature our users asked for most. Here&apos;s the 30-second demo.
       </p>
       <div className="mt-4 aspect-video rounded-xl bg-[linear-gradient(160deg,#1c1c1c,#070707)]" />
       <div className="mt-4 flex gap-6 font-mono text-xs text-muted">

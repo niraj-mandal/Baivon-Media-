@@ -6,10 +6,10 @@ import { Button } from "./ui";
 
 export function Hero() {
   return (
-    <section id="top" className="tone-dark relative overflow-hidden px-4 pt-32 pb-20 sm:px-6 lg:pt-28">
+    <section id="top" className="tone-dark relative overflow-hidden pt-32 pb-20 lg:pt-28">
       <FeedWall />
       {/* First screen: text grid, then the client logo strip */}
-      <div className="relative mx-auto flex max-w-6xl flex-col justify-center lg:min-h-[calc(100svh-7rem)]">
+      <div className="relative mx-auto flex max-w-6xl flex-col justify-center px-4 sm:px-6 lg:min-h-[calc(100svh-7rem)]">
         {/* lg: headline + buttons left, paragraph right. Mobile: one stacked column. */}
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:grid-rows-[auto_auto] lg:gap-x-16 lg:gap-y-9">
           <div className="rise lg:col-start-1 lg:row-start-1 lg:self-end">

@@ -25,6 +25,8 @@ export function Process() {
         {steps.map((s, i) => (
           <li key={s.title} className="relative grid grid-cols-[1.375rem_1fr] gap-6 pb-14 last:pb-0 sm:gap-10">
             <span className="relative z-10 mt-2 size-[1.375rem] rounded-full border-2 border-accent bg-bg" aria-hidden />
+            {/* end the track at the last marker instead of running on under the final step's text */}
+            {i === steps.length - 1 && <span className="absolute top-[1.875rem] bottom-0 left-0 w-[1.375rem] bg-bg" aria-hidden />}
             <Reveal delay={i * 0.08}>
               <span className="block font-mono text-5xl tracking-tight text-fg/15 sm:text-6xl" aria-hidden>0{i + 1}</span>
               <div className="mt-4 flex flex-wrap items-center gap-3">

@@ -129,7 +129,7 @@ export function Cases() {
           </motion.article>
         </AnimatePresence>
 
-        <div className="mt-10 flex items-center justify-between border-t border-line pt-6">
+        <div className="mt-10 flex flex-col gap-5 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-x-6 gap-y-3" role="tablist" aria-label="Choose case study">
             {cases.map((x, k) => (
               <button
@@ -154,7 +154,7 @@ export function Cases() {
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-muted">
+            <span className="whitespace-nowrap font-mono text-xs text-muted">
               {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
             </span>
             <button onClick={() => go(-1)} aria-label="Previous case study" className="grid size-10 place-items-center rounded-full border border-line hover:border-fg/30">

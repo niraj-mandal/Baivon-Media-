@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   description,
   openGraph: { title: "Baivon Media", description, url: site.url, siteName: site.name, type: "website" },
   twitter: { card: "summary_large_image", title: "Baivon Media", description },
+  robots: site.launched ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

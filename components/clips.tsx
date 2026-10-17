@@ -37,7 +37,7 @@ export function Clips() {
     <Section id="clips" className="overflow-x-clip">
       <SectionHeading align="split" title="Recent clips" body="Clips and UGC we've made for clients. Tap the one in the middle to watch it with sound." />
       {clips.some((c) => c.sample) && (
-        <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-wider text-muted">Sample clips</p>
+        <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-muted">Sample clips</p>
       )}
 
       <div
@@ -94,7 +94,7 @@ export function Clips() {
                   }}
                 />
               )}
-              <span className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/80 p-4">
+              <span className={`absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/80 p-4 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}>
                 <span className="self-start rounded-full bg-black/50 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider backdrop-blur">
                   {c.platform}
                 </span>

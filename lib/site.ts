@@ -4,6 +4,8 @@
 export const site = {
   name: "Baivon Media",
   url: "https://baivonmedia.com", // PLACEHOLDER: final domain
+  // Pre-launch switch: false keeps search engines out (draft has sample numbers). Set true at launch.
+  launched: false,
   email: "hello@baivonmedia.com", // PLACEHOLDER
   calLink: "", // PLACEHOLDER: cal.com "username/event"; empty shows a fallback card
   socials: {
