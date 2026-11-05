@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Legal } from "@/components/legal";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Terms of Service | Baivon Media" };
+export const metadata: Metadata = {
+  title: "Terms of Service | Vantor Studio",
+  description: "The terms that apply when you use the Vantor Studio website.",
+  alternates: { canonical: "/terms" },
+};
 
 // PLACEHOLDER: starter text only; have the client confirm it before launch.
 export default function Terms() {
@@ -10,7 +14,7 @@ export default function Terms() {
     <Legal title="Terms of Service">
       <p>By using this website you agree to these terms. Services are provided under a separate written agreement with each client.</p>
       <h2>Website content</h2>
-      <p>All content on this site belongs to Baivon Media or its clients and may not be copied without permission. Results shown are from past campaigns and are not a guarantee of future performance.</p>
+      <p>All content on this site belongs to Vantor Studio or its clients and may not be copied without permission. Results shown are from past campaigns and are not a guarantee of future performance.</p>
       <h2>Pricing and billing</h2>
       <p>Pricing is quoted per engagement in USD and confirmed in your service agreement. Ongoing engagements renew monthly until cancelled with 30 days&apos; notice.</p>
       <h2>Liability</h2>

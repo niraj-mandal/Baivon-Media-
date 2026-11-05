@@ -2,11 +2,11 @@
 // for the client's real material before launch.
 
 export const site = {
-  name: "Baivon Media",
-  url: "https://baivonmedia.com", // PLACEHOLDER: final domain
+  name: "Vantor Studio",
+  url: "https://vantorstudio.com", // PLACEHOLDER: final domain
   // Pre-launch switch: false keeps search engines out (draft has sample numbers). Set true at launch.
   launched: false,
-  email: "hello@baivonmedia.com", // PLACEHOLDER
+  email: "hello@vantorstudio.com", // PLACEHOLDER
   calLink: "", // PLACEHOLDER: cal.com "username/event"; empty shows a fallback card
   socials: {
     linkedin: "https://www.linkedin.com/", // PLACEHOLDER
@@ -14,7 +14,15 @@ export const site = {
   },
 };
 
-export const calUrl = `https://cal.com/${site.calLink}`;
+// A page's own openGraph replaces the layout's wholesale, so pages that set one spread these in.
+export const ogDefaults = {
+  siteName: site.name,
+  type: "website",
+  locale: "en_US",
+  images: { url: "/opengraph-image.png", width: 1200, height: 630, alt: "Vantor Studio: content, UGC and clipping for tech brands" },
+} as const;
+
+export const calUrl =`https://cal.com/${site.calLink}`;
 // Every "Book a call" button: Cal.com once the link is set, the contact page until then.
 export const bookHref = site.calLink ? calUrl : "/contact";
 
@@ -191,7 +199,7 @@ export const testimonials: {
   photo?: string;
   sample?: boolean;
 }[] = [
-  { name: "Jordan Lee", handle: "@jordanbuilds", platform: "x", sample: true, quote: "Baivon got our launch in front of more people in three days than our last three launches combined." },
+  { name: "Jordan Lee", handle: "@jordanbuilds", platform: "x", sample: true, quote: "Vantor got our launch in front of more people in three days than our last three launches combined." },
   { name: "Priya Shah", handle: "Head of Growth, podcast network", platform: "linkedin", sample: true, quote: "The clipping program runs itself. We record, they ship hundreds of clips and the views keep compounding." },
   { name: "Marcus Hill", handle: "@marcushill", platform: "x", sample: true, quote: "Their UGC creators actually understand developer tools. Our best-performing ads all came from them." },
   { name: "Elena Park", handle: "Founder, AI startup", platform: "linkedin", sample: true, quote: "Weekly reports with real view counts and CPM. The first agency where I knew exactly what I was paying for." },

@@ -9,9 +9,9 @@ import { Button } from "./ui";
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight" aria-label="Baivon Media home">
+    <Link href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight" aria-label="Vantor Studio home">
       <LogoMark className="h-5 w-auto text-accent" />
-      Baivon Media
+      Vantor Studio
     </Link>
   );
 }

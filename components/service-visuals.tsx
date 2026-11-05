@@ -55,14 +55,14 @@ function LaunchVisual() {
       <svg viewBox="0 0 300 140" className="mt-4 w-full" aria-hidden>
         <defs>
           <linearGradient id="launch-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="rgb(30 217 123)" stopOpacity="0.35" />
-            <stop offset="1" stopColor="rgb(30 217 123)" stopOpacity="0" />
+            <stop offset="0" style={{ stopColor: "var(--accent)" }} stopOpacity="0.35" />
+            <stop offset="1" style={{ stopColor: "var(--accent)" }} stopOpacity="0" />
           </linearGradient>
         </defs>
         <line x1="120" y1="8" x2="120" y2="130" stroke="rgb(255 255 255 / 0.25)" strokeDasharray="3 4" />
         <path d="M0 122 L40 120 L80 121 L120 116 L140 70 L160 22 L185 34 L215 52 L250 64 L300 72 L300 130 L0 130 Z" fill="url(#launch-fill)" />
-        <path d="M0 122 L40 120 L80 121 L120 116 L140 70 L160 22 L185 34 L215 52 L250 64 L300 72" fill="none" stroke="rgb(30 217 123)" strokeWidth="2" />
-        <circle cx="160" cy="22" r="4" fill="rgb(30 217 123)" />
+        <path d="M0 122 L40 120 L80 121 L120 116 L140 70 L160 22 L185 34 L215 52 L250 64 L300 72" fill="none" style={{ stroke: "var(--accent)" }} strokeWidth="2" />
+        <circle cx="160" cy="22" r="4" style={{ fill: "var(--accent)" }} />
       </svg>
       <div className="mt-2 flex justify-between font-mono text-[11px] text-muted">
         <span>-72h</span>

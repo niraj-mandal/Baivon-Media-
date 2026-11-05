@@ -4,11 +4,18 @@ import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { Arrow } from "@/components/ui";
-import { calUrl, logos, nextSteps, site } from "@/lib/site";
+import { calUrl, logos, nextSteps, ogDefaults, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact | Baivon Media",
+  title: "Contact | Vantor Studio",
   description: "Tell us about your launch or campaign. We reply within one business day.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    ...ogDefaults,
+    title: "Contact Vantor Studio",
+    description: "Tell us about your launch or campaign. We reply within one business day.",
+    url: "/contact",
+  },
 };
 
 export default function Contact() {

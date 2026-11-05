@@ -66,7 +66,7 @@ export function Button({
 }) {
   const styles =
     variant === "primary"
-      ? "bg-fg text-bg hover:bg-accent hover:text-black"
+      ? "bg-fg text-bg hover:bg-accent hover:text-bg"
       : "border border-line bg-surface text-fg hover:border-fg/25";
   return (
     <a

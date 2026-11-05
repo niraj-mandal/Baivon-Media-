@@ -14,6 +14,10 @@ export function Hero() {
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:grid-rows-[auto_auto] lg:gap-x-16 lg:gap-y-9">
           <div className="rise lg:col-start-1 lg:row-start-1 lg:self-end">
             <h1 className="text-5xl font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl">
+              {/* Search keywords inside the H1, kept quiet so the headline still leads */}
+              <span className="mb-6 block text-sm font-normal tracking-normal text-muted sm:text-base">
+                Content, UGC &amp; clipping agency for tech brands
+              </span>
               Make your <RotatingWord words={["launch", "podcast", "product demo", "founder story"]} />{" "}
               <span className="block text-balance text-muted">impossible to scroll past.</span>
             </h1>
@@ -23,7 +27,7 @@ export function Hero() {
             className="rise max-w-sm text-base text-muted text-pretty sm:text-lg lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center lg:justify-self-end"
             style={{ animationDelay: "0.18s" }}
           >
-            Baivon Media puts tech brands in front of millions on TikTok, Reels, Shorts, X and LinkedIn, with creators, clippers and campaigns you can measure to the view.
+            Vantor Studio puts tech brands in front of millions on TikTok, Reels, Shorts, X and LinkedIn, with creators, clippers and campaigns you can measure to the view.
           </p>
 
           <div className="rise lg:col-start-1 lg:row-start-2 lg:self-start" style={{ animationDelay: "0.24s" }}>

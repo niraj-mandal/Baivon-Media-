@@ -19,7 +19,7 @@ export function Process() {
       </div>
 
       <ol className="relative">
-        {/* Track and its green fill, running through the step markers */}
+        {/* Track and its accent fill, running through the step markers */}
         <span className="absolute top-3 bottom-3 left-[0.6875rem] w-px bg-line" aria-hidden />
         <span className="process-fill absolute top-3 bottom-3 left-[0.6875rem] w-px bg-accent" aria-hidden />
         {steps.map((s, i) => (

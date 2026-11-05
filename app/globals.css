@@ -8,6 +8,7 @@
   --muted: #8a8a8a;
   --line: rgb(255 255 255 / 0.09);
   --surface: rgb(255 255 255 / 0.03);
+  --accent: #c9ced6; /* platinum */
 }
 
 .tone-light {
@@ -16,6 +17,7 @@
   --muted: #63635f;
   --line: rgb(0 0 0 / 0.1);
   --surface: rgb(0 0 0 / 0.03);
+  --accent: #5a616c; /* platinum reads as steel on light sections, so it keeps contrast */
 }
 
 .tone-light,
@@ -30,7 +32,7 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-surface: var(--surface);
-  --color-accent: #1ed97b;
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -47,7 +49,7 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: #000;
+  color: var(--bg);
 }
 
 /* Glassy dark card with a soft top highlight */
@@ -93,7 +95,7 @@ body {
   to { transform: translateX(-50%); }
 }
 
-/* Distribution engine connectors: a green pulse flowing between stages.
+/* Distribution engine connectors: a platinum pulse flowing between stages.
    Vertical when the engine stacks on small screens, horizontal from lg up. */
 .flow {
   position: relative;
@@ -137,7 +139,7 @@ body {
   animation: orb-ring 2.6s ease-out infinite;
 }
 
-/* How it works: the timeline line fills green as it scrolls through view.
+/* How it works: the timeline line fills with the accent as it scrolls through view.
    Browsers without scroll-driven animations just show it filled. */
 .process-fill {
   transform-origin: top;

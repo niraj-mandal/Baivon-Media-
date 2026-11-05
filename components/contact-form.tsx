@@ -24,7 +24,7 @@ export function ContactForm() {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...data, access_key: KEY, subject: `New enquiry from ${data.name}`, from_name: "Baivon Media website" }),
+        body: JSON.stringify({ ...data, access_key: KEY, subject: `New enquiry from ${data.name}`, from_name: "Vantor Studio website" }),
       });
       const json = await res.json();
       if (!json.success) throw new Error(json.message);
@@ -38,7 +38,7 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div className="card p-8 sm:p-10" role="status">
-        <span className="grid size-10 place-items-center rounded-full bg-accent text-black" aria-hidden>
+        <span className="grid size-10 place-items-center rounded-full bg-accent text-bg" aria-hidden>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="m3.5 8.5 3 3 6-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -54,7 +54,7 @@ export function ContactForm() {
           ))}
         </ol>
         {site.calLink ? (
-          <a href={calUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-11 items-center rounded-full bg-fg px-5 text-sm font-medium text-bg hover:bg-accent hover:text-black">
+          <a href={calUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-11 items-center rounded-full bg-fg px-5 text-sm font-medium text-bg hover:bg-accent hover:text-bg">
             Skip the wait: book a call now
           </a>
         ) : (
@@ -119,7 +119,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="h-12 w-full rounded-full bg-fg text-sm font-medium text-bg transition-colors hover:bg-accent hover:text-black disabled:opacity-60"
+        className="h-12 w-full rounded-full bg-fg text-sm font-medium text-bg transition-colors hover:bg-accent hover:text-bg disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send enquiry"}
       </button>

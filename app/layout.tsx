@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { site } from "@/lib/site";
+import { ogDefaults, site } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,14 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 const description =
-  "Baivon Media runs content marketing, tech campaigns, UGC and clipping for startups, SaaS and AI brands. Millions of views, measured and reported.";
+  "Vantor Studio runs content marketing, tech campaigns, UGC and clipping for startups, SaaS and AI brands. Millions of views, measured and reported.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Baivon Media | Content, UGC & Clipping for Tech Brands",
+  title: "Vantor Studio | Content, UGC & Clipping for Tech Brands",
   description,
-  openGraph: { title: "Baivon Media", description, url: site.url, siteName: site.name, type: "website" },
-  twitter: { card: "summary_large_image", title: "Baivon Media", description },
+  // No og:url here: it would point every page at the homepage. Each page sets its own canonical.
+  openGraph: { ...ogDefaults, title: "Vantor Studio", description },
+  // Card type only: X reads title, description and image from each page's og tags
+  twitter: { card: "summary_large_image" },
   robots: site.launched ? undefined : { index: false, follow: false },
 };
 

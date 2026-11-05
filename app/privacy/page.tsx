@@ -2,13 +2,17 @@ import type { Metadata } from "next";
 import { Legal } from "@/components/legal";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Privacy Policy | Baivon Media" };
+export const metadata: Metadata = {
+  title: "Privacy Policy | Vantor Studio",
+  description: "How Vantor Studio collects, uses and protects information from website visitors and people who contact us.",
+  alternates: { canonical: "/privacy" },
+};
 
 // PLACEHOLDER: starter text only; have the client confirm it before launch.
 export default function Privacy() {
   return (
     <Legal title="Privacy Policy">
-      <p>This policy explains how Baivon Media (&ldquo;we&rdquo;) collects and uses information when you visit this website or contact us.</p>
+      <p>This policy explains how Vantor Studio (&ldquo;we&rdquo;) collects and uses information when you visit this website or contact us.</p>
       <h2>What we collect</h2>
       <p>Details you send through our contact form or booking tool, such as your name, email, company and message, plus basic analytics about how the site is used.</p>
       <h2>How we use it</h2>
